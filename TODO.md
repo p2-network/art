@@ -23,17 +23,17 @@
 - [x] infra: add a `PATCH /playlist/{playlistId}` to modify playlists (_must_ modify LastUpdated)
   - [x] infra: validate the assets exist (for the current user)
   - [x] cli: provide examples for adding and removing scenes
-- [ ] infra: add a `PATCH /surface/{surfaceId}` to set Rotation (default = 0, 90, 180, 270)
-  - [ ] cli: add a task set-surface-rotation SURFACE_ID=... ROTATION=...
-  - [ ] infra: update `GET /surface/{surfaceId}/hello` to include Rotation
-  - [ ] Projector: read Rotation from `GET /surface/{surfaceId}/hello` and update UI.
-- [ ] infra: add a `PATCH /surface/{surfaceId}` to set PlaylistId
-  - [ ] cli: add a task set-surface-playlist SURFACE_ID=... PLAYLIST_ID=...
-- [ ] infra: add PlaylistId to `GET /surface/{surfaceId}/hello`
-- [ ] Projector: fix login
-- [ ] Projector: update hello process to fetch playlistId and fetch the playlist
+- [x] infra: add a `PATCH /surface/{surfaceId}` to set Rotation (default = 0, 90, 180, 270), Name, PlaylistId
+  - [x] cli: add a task set-surface-rotation SURFACE_ID=... ROTATION=...
+  - [x] infra: validate PlaylistId exists
+  - [x] infra: update `GET /surface/{surfaceId}/hello` to include Rotation, PlaylistId
+  - [x] Projector: read Rotation from `GET /surface/{surfaceId}/hello` and update UI.
+- [x] infra: `GET /surface/{surfaceId}/hello` should have a `surface` key, only include Rotation, PlaylistId, Name
+- [x] Projector: fix login
+- [x] Projector: update hello process to fetch playlistId and fetch the playlist
   - [ ] UI should show a "No playlists" if PlaylistId is null/undefined
-  - [ ] UI should show a "Loading playlist..." while loading the playlist ()
+  - [x] UI should show a "Loading playlist..." while loading the playlist ()
+  - [ ] UI should show a "No items" if playlist has nothing in it
 - [ ] Projector: download assets for current playlist
 - [ ] Projector: show assets from playlist (v0 only show first asset in each scene)
   - [ ] show first scene
@@ -61,9 +61,11 @@
 - [ ] infra: make `PATCH /asset/{assetId}` with an invalid assetId error better than "something went wrong"
 - [ ] cli: add a `task add-to-playlist PLAYLIST_ID=... ASSETS=ASSET_ID,... DURATION=...`
 - [ ] cli: add a `task remove-from-playlist PLAYLIST_ID=... SCENE=`
+- [ ] infra: make `PATCH /surface/{surfaceId}` validate the rotation?
 
 ## Later
 
+- [ ] Projector: First auth seems to not persist surface ID after registering
 - [ ] Projector: show multiple assets per scene
 - [ ] Projector: handle files on disk appropriately - understand tvOS limits
   - [ ] remove any cached assets if not present in any scene in the current playlist
